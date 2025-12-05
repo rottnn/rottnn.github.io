@@ -1,21 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Abhishek Pal - Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhishek Pal | AI Engineer</title>
+    <!-- Importing Archivo Black for the heavy headers and Roboto Mono for the code/subtext vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS for layout utility -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* The specific neon green from the reference image */
+            --discord-green: #3BA55C; 
+            /* A brighter terminal green for the text to pop against black */
+            --terminal-green: #2ecc71;
+            --bg-dark: #050505;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--terminal-green);
+            font-family: 'Roboto Mono', monospace;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* THE BACKGROUND TEXTURE 
+           Recreating the dot-matrix/noise look from the reference without a heavy image file.
+        */
+        .crt-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(30, 200, 85, 0.15) 1px, transparent 1px),
+                radial-gradient(circle, rgba(0, 0, 0, 0.4) 1px, transparent 1px);
+            background-size: 4px 4px; /* Size of the dots */
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* Vignette effect to darken corners like an old monitor */
+        .vignette {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 50%, black 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* THE PROFILE PICTURE
+           Replacing the Discord logo.
+        */
+        .profile-container {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--terminal-green);
+            box-shadow: 0 0 20px rgba(46, 204, 113, 0.4);
+            filter: grayscale(100%) contrast(120%); /* Grayscale to match the harsh theme */
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            filter: grayscale(0%);
+            box-shadow: 0 0 40px rgba(46, 204, 113, 0.8);
+            transform: scale(1.05);
+        }
+
+        /* THE MAIN HEADLINE 
+           "CHECKPOINT UNAVAILABLE" style -> "ABHISHEK PAL"
+        */
+        .heavy-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem); /* Responsive sizing */
+            line-height: 0.9;
+            text-transform: uppercase;
+            text-align: center;
+            color: var(--terminal-green);
+            text-shadow: 4px 4px 0px #000;
+            z-index: 10;
+            margin-bottom: 1rem;
+            letter-spacing: -2px;
+        }
+
+        /* SUBTEXT
+           "This happens if you're new here..." style
+        */
+        .sub-text {
+            color: #a8e6cf; /* Slightly softer green for readability */
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 600px;
+            margin-bottom: 3rem;
+            z-index: 10;
+            padding: 0 1rem;
+            font-weight: 700;
+        }
+
+        .skill-pipe {
+            color: #1a5c32; /* Darker green pipe separators */
+            margin: 0 5px;
+        }
+
+        /* LINKS / BUTTONS
+           "APPLIED" button style
+        */
+        .links-container {
+            display: flex;
+            gap: 20px;
+            z-index: 10;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .retro-btn {
+            background-color: rgba(0,0,0,0.8);
+            border: 2px solid var(--terminal-green);
+            color: var(--terminal-green);
+            padding: 12px 30px;
+            font-family: 'Archivo Black', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0px var(--terminal-green); /* Hard block shadow */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .retro-btn:hover {
+            transform: translate(2px, 2px); /* Button press effect */
+            box-shadow: 2px 2px 0px var(--terminal-green);
+            background-color: var(--terminal-green);
+            color: black;
+        }
+        
+        .retro-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px transparent;
+        }
+
+        /* Floating animation for the profile */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Scanline animation */
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 10;
+            background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(46, 204, 113, 0.1) 50%, rgba(0,0,0,0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scanline 10s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100%; }
+        }
+        
+        /* Top right control buttons simulation */
+        .ui-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+        
+        .ui-box {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--terminal-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--terminal-green);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <img src="abhishek.jpg" alt="Abhishek Pal" class="profile-pic"/>
-    <h1>Abhishek Pal</h1>
-    <p>AI | ML | Python | Circuit Design | Deep Learning</p>
-    <div class="links">
-      <a href="mailto:rotttnn@gmail.com">Email</a>
-      <a href="https://github.com/rottnn" target="_blank">GitHub</a>
-      <a href="https://kaggle.com/rottnn" target="_blank">Kaggle</a>
+
+    <!-- Background Effects -->
+    <div class="crt-overlay"></div>
+    <div class="vignette"></div>
+    <div class="scanline"></div>
+
+    <!-- UI Mockup (Top Right) -->
+    <div class="ui-controls">
+        <div class="ui-box"><i class="fas fa-volume-up"></i></div>
+        <div class="ui-box"><i class="fas fa-times"></i></div>
     </div>
-  </div>
+
+    <!-- Profile Picture Section -->
+    <div class="profile-container">
+        <!-- 
+            ACTION ITEM: Replace the src below with the path to your actual photo.
+            Example: src="./my-photo.jpg" 
+        -->
+       <img src="abhishek.jpg" 
+     alt="Abhishek Pal" 
+     class="profile-img"
+     id="user-profile-pic">
+    </div>
+
+    <!-- Main Title -->
+    <h1 class="heavy-title">
+        ABHISHEK<br>PAL
+    </h1>
+
+    <!-- Skills / Subtext -->
+    <p class="sub-text">
+        AI <span class="skill-pipe">|</span> ML <span class="skill-pipe">|</span> PYTHON <span class="skill-pipe">|</span> CIRCUIT DESIGN <span class="skill-pipe">|</span> DEEP LEARNING
+    </p>
+    
+    <p class="sub-text text-sm mt-0 opacity-70">
+        // EST. 2002 // MAINPURI, UP
+    </p>
+
+    <!-- Links / Buttons -->
+    <div class="links-container">
+        <a href="mailto:your.email@example.com" class="retro-btn">
+            <i class="fas fa-envelope"></i> Email
+        </a>
+        <a href="https://github.com" target="_blank" class="retro-btn">
+            <i class="fab fa-github"></i> GitHub
+        </a>
+        <a href="https://kaggle.com" target="_blank" class="retro-btn">
+            <i class="fab fa-kaggle"></i> Kaggle
+        </a>
+    </div>
+
+    <div class="fixed bottom-4 text-xs text-green-800 font-mono z-10">
+        SYSTEM_STATUS: BIPOLAR_OVERDRIVE // OPERATIONAL
+    </div>
+
+    <script>
+        // Optional: Simple script to allow users to drag/drop their own image locally to test
+        const img = document.getElementById('user-profile-pic');
+        img.addEventListener('click', () => {
+             // Just a playful interaction
+             img.style.transform = "rotate(360deg)";
+             setTimeout(() => { img.style.transform = "rotate(0deg)"; }, 500);
+        });
+    </script>
 </body>
 </html>
