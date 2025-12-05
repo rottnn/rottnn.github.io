@@ -21,7 +21,7 @@
             font-family: 'Inter', sans-serif;
             height: 100vh;
             width: 100vw;
-            overflow: hidden; /* Stop scrolling to keep the 'screen' vibe */
+            overflow: hidden; /* Stop scrolling */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -30,7 +30,7 @@
             position: relative;
         }
 
-        /* NOISE TEXTURE - Essential for the raw look */
+        /* NOISE TEXTURE */
         .noise-overlay {
             position: absolute;
             top: 0;
@@ -43,7 +43,7 @@
             z-index: 1;
         }
 
-        /* SCANLINE - Subtle moving line */
+        /* SCANLINE */
         .scanline {
             width: 100%;
             height: 100px;
@@ -62,21 +62,20 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 95%; /* Increased width to allow single line text */
+            max-width: 95%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* PROFILE IMAGE - Styled like the Discord Logo (Small, Centered) */
+        /* PROFILE IMAGE - SPINNING */
         .logo-frame {
-            width: 100px; /* FIXED SMALL SIZE LIKE THE LOGO */
+            width: 100px; 
             height: 100px;
             margin-bottom: 30px;
             position: relative;
         }
         
-        /* ROTATION ANIMATION */
         @keyframes slowSpin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
@@ -86,16 +85,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%; /* Circular for rotation */
+            border-radius: 50%;
             filter: grayscale(100%) contrast(150%) brightness(0.9);
             border: 2px solid var(--neon-green);
-            animation: slowSpin 10s linear infinite; /* THE REQUESTED SPIN */
+            animation: slowSpin 10s linear infinite; /* SPIN IS HERE */
         }
 
-        /* MASSIVE TEXT - The "CHECKPOINT UNAVAILABLE" Look */
+        /* MASSIVE TEXT */
         .headline {
             font-family: 'Archivo Black', sans-serif;
-            /* Adjusted sizing to ensure 'Abhishek Pal' fits on one line without breaking mobile */
             font-size: clamp(2rem, 7vw, 6rem); 
             line-height: 1;
             text-transform: uppercase;
@@ -103,7 +101,7 @@
             letter-spacing: -2px;
             color: var(--neon-green);
             text-shadow: 0 0 15px rgba(59, 165, 92, 0.3);
-            white-space: nowrap; /* Forces one line */
+            white-space: nowrap; 
         }
 
         /* SUBTEXT */
@@ -115,7 +113,7 @@
             color: #a8e6cf;
         }
 
-        /* BUTTONS - The "APPLIED" Block Style */
+        /* BUTTONS */
         .btn-container {
             margin-top: 3rem;
             display: flex;
@@ -125,8 +123,8 @@
         }
 
         .block-btn {
-            background-color: var(--neon-green); /* SOLID GREEN */
-            color: black; /* BLACK TEXT */
+            background-color: var(--neon-green); 
+            color: black; 
             font-family: 'Archivo Black', sans-serif;
             text-transform: uppercase;
             padding: 12px 32px;
@@ -136,7 +134,7 @@
             text-decoration: none;
             letter-spacing: 1px;
             transition: transform 0.1s, filter 0.2s;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Sharp box */
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         }
 
         .block-btn:hover {
@@ -160,19 +158,17 @@
     <div class="noise-overlay"></div>
     <div class="scanline"></div>
 
-    <!-- Controls Removed as requested -->
-
     <div class="content">
-        <!-- IMAGE SECTION: Replaces the Discord Logo -->
+        <!-- IMAGE SECTION -->
         <div class="logo-frame">
-            <!-- MAKE SURE THIS FILE NAME IS CORRECT IN YOUR REPO -->
+            <!-- Ensure this file exists in your repo -->
             <img src="abhishek.jpg" alt="Profile">
         </div>
 
-        <!-- MAIN TEXT: Single Line -->
+        <!-- MAIN TEXT -->
         <h1 class="headline">ABHISHEK PAL</h1>
 
-        <!-- SUBTEXT: Cleaned up -->
+        <!-- SUBTEXT -->
         <p class="subtext">
             This happens if you're looking for normal. You won't find it here.
         </p>
@@ -185,8 +181,8 @@
             <a href="https://github.com/rottnn" target="_blank" class="block-btn outline">
                 GITHUB
             </a>
-            <a href="#" class="block-btn outline">
-                RESUME
+            <a href="https://kaggle.com" target="_blank" class="block-btn outline">
+                KAGGLE
             </a>
         </div>
     </div>
