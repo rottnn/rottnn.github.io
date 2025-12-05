@@ -21,7 +21,7 @@
             font-family: 'Inter', sans-serif;
             height: 100vh;
             width: 100vw;
-            overflow: hidden; /* Stop scrolling */
+            overflow: hidden; /* Stop scrolling to keep the 'screen' vibe */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -30,7 +30,7 @@
             position: relative;
         }
 
-        /* NOISE TEXTURE */
+        /* NOISE TEXTURE - Essential for the raw look */
         .noise-overlay {
             position: absolute;
             top: 0;
@@ -43,7 +43,7 @@
             z-index: 1;
         }
 
-        /* SCANLINE */
+        /* SCANLINE - Subtle moving line */
         .scanline {
             width: 100%;
             height: 100px;
@@ -62,46 +62,40 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 95%;
+            max-width: 90%;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* PROFILE IMAGE - SPINNING */
+        /* PROFILE IMAGE - Styled like the Discord Logo (Small, Centered) */
         .logo-frame {
-            width: 100px; 
+            width: 100px; /* FIXED SMALL SIZE LIKE THE LOGO */
             height: 100px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
         }
         
-        @keyframes slowSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .logo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 50%;
+            /* Masking it to look a bit raw/integrated */
+            border-radius: 12px; 
             filter: grayscale(100%) contrast(150%) brightness(0.9);
             border: 2px solid var(--neon-green);
-            animation: slowSpin 10s linear infinite; /* SPIN IS HERE */
         }
 
-        /* MASSIVE TEXT */
+        /* MASSIVE TEXT - The "CHECKPOINT UNAVAILABLE" Look */
         .headline {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2rem, 7vw, 6rem); 
-            line-height: 1;
+            font-size: clamp(3rem, 12vw, 8rem); /* RESPONSIVE HUGE */
+            line-height: 0.85;
             text-transform: uppercase;
             margin: 0;
             letter-spacing: -2px;
             color: var(--neon-green);
             text-shadow: 0 0 15px rgba(59, 165, 92, 0.3);
-            white-space: nowrap; 
         }
 
         /* SUBTEXT */
@@ -113,9 +107,9 @@
             color: #a8e6cf;
         }
 
-        /* BUTTONS */
+        /* BUTTONS - The "APPLIED" Block Style */
         .btn-container {
-            margin-top: 3rem;
+            margin-top: 2.5rem;
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
@@ -123,8 +117,8 @@
         }
 
         .block-btn {
-            background-color: var(--neon-green); 
-            color: black; 
+            background-color: var(--neon-green); /* SOLID GREEN */
+            color: black; /* BLACK TEXT */
             font-family: 'Archivo Black', sans-serif;
             text-transform: uppercase;
             padding: 12px 32px;
@@ -134,7 +128,7 @@
             text-decoration: none;
             letter-spacing: 1px;
             transition: transform 0.1s, filter 0.2s;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); /* Sharp box */
         }
 
         .block-btn:hover {
@@ -151,6 +145,26 @@
             background-color: rgba(59, 165, 92, 0.1);
         }
 
+        /* Top Right Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+        }
+        .control-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--neon-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-green);
+            font-size: 0.9rem;
+        }
+
     </style>
 </head>
 <body>
@@ -158,31 +172,35 @@
     <div class="noise-overlay"></div>
     <div class="scanline"></div>
 
+
+
     <div class="content">
-        <!-- IMAGE SECTION -->
+        <!-- IMAGE SECTION: Replaces the Discord Logo -->
         <div class="logo-frame">
-            <!-- Ensure this file exists in your repo -->
+            <!-- MAKE SURE THIS FILE NAME IS CORRECT IN YOUR REPO -->
             <img src="abhishek.jpg" alt="Profile">
         </div>
 
-        <!-- MAIN TEXT -->
+        <!-- MAIN TEXT: Stacked exactly like CHECKPOINT / UNAVAILABLE -->
         <h1 class="headline">ABHISHEK PAL</h1>
+
 
         <!-- SUBTEXT -->
         <p class="subtext">
-            This happens if you're looking for normal. You won't find it here.
+            <br>
+            <span class="text-sm opacity-70 mt-2 block">AI RESEARCHER</span>
         </p>
 
         <!-- BUTTONS -->
         <div class="btn-container">
-            <a href="mailto:your@email.com" class="block-btn">
+            <a href="mailto:yROTTTNN@gmail.com" class="block-btn">
                 CONTACT
             </a>
             <a href="https://github.com/rottnn" target="_blank" class="block-btn outline">
                 GITHUB
             </a>
-            <a href="https://kaggle.com" target="_blank" class="block-btn outline">
-                KAGGLE
+            <a href="https://kaggle.com/rottnn" target="_blank" class="block-btn outline">
+             KAGGLE
             </a>
         </div>
     </div>
