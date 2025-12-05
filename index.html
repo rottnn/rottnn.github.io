@@ -62,7 +62,7 @@
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 90%;
+            max-width: 95%; /* Increased width to allow single line text */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -72,30 +72,38 @@
         .logo-frame {
             width: 100px; /* FIXED SMALL SIZE LIKE THE LOGO */
             height: 100px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             position: relative;
         }
         
+        /* ROTATION ANIMATION */
+        @keyframes slowSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .logo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Masking it to look a bit raw/integrated */
-            border-radius: 12px; 
+            border-radius: 50%; /* Circular for rotation */
             filter: grayscale(100%) contrast(150%) brightness(0.9);
             border: 2px solid var(--neon-green);
+            animation: slowSpin 10s linear infinite; /* THE REQUESTED SPIN */
         }
 
         /* MASSIVE TEXT - The "CHECKPOINT UNAVAILABLE" Look */
         .headline {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(3rem, 12vw, 8rem); /* RESPONSIVE HUGE */
-            line-height: 0.85;
+            /* Adjusted sizing to ensure 'Abhishek Pal' fits on one line without breaking mobile */
+            font-size: clamp(2rem, 7vw, 6rem); 
+            line-height: 1;
             text-transform: uppercase;
             margin: 0;
             letter-spacing: -2px;
             color: var(--neon-green);
             text-shadow: 0 0 15px rgba(59, 165, 92, 0.3);
+            white-space: nowrap; /* Forces one line */
         }
 
         /* SUBTEXT */
@@ -109,7 +117,7 @@
 
         /* BUTTONS - The "APPLIED" Block Style */
         .btn-container {
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
@@ -145,26 +153,6 @@
             background-color: rgba(59, 165, 92, 0.1);
         }
 
-        /* Top Right Controls */
-        .controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
-            z-index: 20;
-        }
-        .control-icon {
-            width: 36px;
-            height: 36px;
-            border: 1px solid var(--neon-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--neon-green);
-            font-size: 0.9rem;
-        }
-
     </style>
 </head>
 <body>
@@ -172,10 +160,7 @@
     <div class="noise-overlay"></div>
     <div class="scanline"></div>
 
-    <div class="controls">
-        <div class="control-icon"><i class="fas fa-volume-high"></i></div>
-        <div class="control-icon"><i class="fas fa-xmark"></i></div>
-    </div>
+    <!-- Controls Removed as requested -->
 
     <div class="content">
         <!-- IMAGE SECTION: Replaces the Discord Logo -->
@@ -184,14 +169,12 @@
             <img src="abhishek.jpg" alt="Profile">
         </div>
 
-        <!-- MAIN TEXT: Stacked exactly like CHECKPOINT / UNAVAILABLE -->
-        <h1 class="headline">ABHISHEK</h1>
-        <h1 class="headline">PAL</h1>
+        <!-- MAIN TEXT: Single Line -->
+        <h1 class="headline">ABHISHEK PAL</h1>
 
-        <!-- SUBTEXT -->
+        <!-- SUBTEXT: Cleaned up -->
         <p class="subtext">
-            This happens if you're looking for normal. You won't find it here.<br>
-            <span class="text-sm opacity-70 mt-2 block">AI ENGINEER // BIPOLAR OVERDRIVE // EST. 2002</span>
+            This happens if you're looking for normal. You won't find it here.
         </p>
 
         <!-- BUTTONS -->
